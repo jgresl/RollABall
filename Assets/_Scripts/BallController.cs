@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
-    public float ballSpeed = 2f;
-    public Rigidbody sphereRigidbody;
+    [SerializeField] private float ballSpeed = 2f;
+    [SerializeField] private Rigidbody sphereRigidbody;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        ballSpeed = 5.0F;
+
     }
 
     // Update is called once per frame
