@@ -2,16 +2,22 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
+    public float ballSpeed = 2f;
+    public Rigidbody sphereRigidbody;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        ballSpeed = 5.0F;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 inputVector = Vector2.zero; // intialize our input vector
+        // Intialize the 2D input vector
+        Vector2 inputVector = Vector2.zero;
+
+        // Get user input
         if (Input.GetKey(KeyCode.W))
         {
             inputVector += Vector2.up;
@@ -32,10 +38,18 @@ public class BallController : MonoBehaviour
             inputVector += Vector2.left;
         }
 
-        // Print result if not 0, 0
-        if (inputVector != Vector2.zero)
+        // Create a 3D version of the 2D input vector
+        Vector3 inputXZPlane = new Vector3(inputVector.x, 0, inputVector.y);
+
+        // Check for input
+        if (inputXZPlane != Vector3.zero)
         {
-            Debug.Log("Resultant Vector: " + inputVector);
+            // Log result vectors
+            Debug.Log("Resultant 2D Vector: " + inputVector);
+            Debug.Log("Resultant 3D Vector: " + inputXZPlane);
+
+            // Apply force the the sphere rigid body
+            sphereRigidbody.AddForce(inputXZPlane * ballSpeed);
         }
     }
 }
